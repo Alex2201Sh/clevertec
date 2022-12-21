@@ -12,9 +12,9 @@ import java.io.IOException;
  */
 public class TextFileWriter implements Writer {
 
-    public void writeReceiptToFile(Receipt receipt) {
+    public void writeReceiptToFile(Receipt receipt, String filename) {
 
-        try (FileWriter writer = new FileWriter("src/main/resources/outputData/receipt.txt", false)) {
+        try (FileWriter writer = new FileWriter(filename, false)) {
             ReceiptView receiptView = new ReceiptView();
             String receiptToString = receiptView.viewReceipt(receipt);
             writer.write(receiptToString);
@@ -23,5 +23,4 @@ public class TextFileWriter implements Writer {
             System.out.println(ex.getMessage());
         }
     }
-
 }
