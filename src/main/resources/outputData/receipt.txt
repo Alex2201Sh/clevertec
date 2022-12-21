@@ -9,5 +9,5 @@ Current discount percentage: 7
 |  1|                  Oil|   8,01|   8,01|
 |  2|             Cucumber|   6,40|  12,80|
 |  3|                Apple|   5,25|  15,75|
-|Total cost:                         91,31|
-|Total cost with discount:           84,92|
+|Total cost:                         98,19|
+|Total cost with discount:           91,31|

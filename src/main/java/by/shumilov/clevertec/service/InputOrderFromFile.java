@@ -5,8 +5,8 @@ import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
 import by.shumilov.clevertec.dao.DAOFactory;
-import by.shumilov.clevertec.dao.exception.DaoException;
 import by.shumilov.clevertec.dao.impl.DiscountCardDAO;
+import by.shumilov.clevertec.dao.exception.DaoException;
 import by.shumilov.clevertec.dao.impl.ProductDAO;
 import by.shumilov.clevertec.view.impl.TextFileReader;
 

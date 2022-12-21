@@ -1,6 +1,5 @@
 package by.shumilov.clevertec.dao.impl;
 
-import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.dao.exception.DaoException;
 import org.junit.jupiter.api.BeforeEach;
