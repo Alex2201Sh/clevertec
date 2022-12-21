@@ -33,4 +33,7 @@
 формат данных прописывается в одной строке: 
 productId-productQuantity ... productId-productQuantity card-discountCardId
 
-Стек: Java 17, Gradle 7.5, Junit 5.7
+Стек: Java 17, Gradle 7.5, Junit 5.7, Postgres 13.
+
+_P.S. Добавлена поддержка базы данных PostgreSQL. Однако при подключении есть ошибка.
+Пока проблема не решена, но ddl команды и другие классы, связанные с базой данных дабавляю._
