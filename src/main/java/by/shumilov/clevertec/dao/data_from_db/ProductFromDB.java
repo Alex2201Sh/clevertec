@@ -18,11 +18,12 @@ public class ProductFromDB implements ItemDAO {
     }
 
     private static final String SQL_SELECT_PRODUCT_BY_ID =
-            "SELECT public.products.id as product_id, public.products.name, \n" +
-                    "       public.products.price,\n" +
-                    "       public.products.is_promotion\n" +
-                    "from public.products\n" +
-                    "where public.products.id = ?;";
+            "SELECT products.id,\n" +
+                    "       products.name,\n" +
+                    "       products.price,\n" +
+                    "       products.is_promotion\n" +
+                    "from products\n" +
+                    "where products.id = ?;";
 
 
     @Override

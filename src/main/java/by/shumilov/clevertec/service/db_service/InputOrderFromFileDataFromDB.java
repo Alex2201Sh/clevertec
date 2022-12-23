@@ -23,7 +23,6 @@ public class InputOrderFromFileDataFromDB {
     private final TextFileReader textFileReader = new TextFileReader();
     private Connection connection;
 
-
     /**
      * The method creates database of Products and
      * Discount Cards from files in resources folder.
@@ -41,13 +40,10 @@ public class InputOrderFromFileDataFromDB {
             // Создать объект Connection подключенный к database.
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             connectionPool.init();
-            Thread.sleep(100);
             connection = connectionPool.getConnection();
             connection.setAutoCommit(false);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         ProductFromDB productFromDB = new ProductFromDB(connection);

@@ -1,13 +1,5 @@
-Discount card №1234
-Current discount percentage: 7
+Discount card №1
+Current discount percentage: 0
 |Qty|              Product|  Price|  Total|
-|  4|               Carrot|   3,20|  12,80|
-|  5|               Tomato|   6,73|  33,65|
-|Additional promotion 10% for line above. |
-|  3|                Juice|   1,50|   4,50|
-|  6|                Sugar|   2,34|  14,04|
-|  1|                  Oil|   8,01|   8,01|
-|  2|             Cucumber|   6,40|  12,80|
-|  3|                Apple|   5,25|  15,75|
-|Total cost:                         98,19|
-|Total cost with discount:           91,31|
+|Total cost:                         0,00|
+|Total cost with discount:           0,00|

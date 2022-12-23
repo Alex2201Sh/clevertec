@@ -18,7 +18,7 @@ public class DiscountCardFromDB implements ItemDAO {
     }
 
     private static final String SQL_SELECT_PRODUCT_BY_ID =
-            "SELECT public.discount_cards.id as id,\n" +
+            "SELECT public.discount_cards.id,\n" +
                     "       public.discount_cards.discount_percentage\n" +
                     "from public.discount_cards\n" +
                     "where public.discount_cards.id = ?;";
