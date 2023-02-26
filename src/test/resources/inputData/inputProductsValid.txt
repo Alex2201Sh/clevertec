@@ -1,2 +1,3 @@
 0 default 0 false
-1 default2 1 true
+1 Carrot 3.20 true
+2 Tomato 6.73 true

@@ -1,24 +1,28 @@
-package by.shumilov.clevertec.service;
+package by.shumilov.clevertec.service.impl;
 
 import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
 import by.shumilov.clevertec.dao.DAOFactory;
-import by.shumilov.clevertec.dao.impl.DiscountCardDAO;
 import by.shumilov.clevertec.dao.exception.DaoException;
+import by.shumilov.clevertec.dao.impl.DiscountCardDAO;
 import by.shumilov.clevertec.dao.impl.ProductDAO;
+import by.shumilov.clevertec.service.InputOrder;
+import by.shumilov.clevertec.service.ReceiptCreator;
 import by.shumilov.clevertec.view.impl.TextFileReader;
-
-import java.net.URISyntaxException;
 
 /**
  * The class is used to read the shopping list as a text file
  * and convert it to Receipt object.
  */
-public class InputOrderFromFile {
+public class InputOrderFromFile implements InputOrder {
 
-    private final TextFileReader textFileReader = new TextFileReader();
+    private final TextFileReader textFileReader;
+
+    public InputOrderFromFile(TextFileReader textFileReader) {
+        this.textFileReader = textFileReader;
+    }
 
     /**
      * The method creates database of Products and
@@ -32,18 +36,15 @@ public class InputOrderFromFile {
         Receipt receipt = null;
         ReceiptCreator receiptCreator = new ReceiptCreator();
         DAOFactory daoFactory = new DAOFactory();
-        String inputDataLocation = "inputData/";
         ProductDAO productDAO = (ProductDAO) daoFactory
                 .createAndFillDAOFromFile("product dao",
-                        inputDataLocation + args[0] + ".txt");
+                        args[0]);
         DiscountCardDAO discountCardDAO = (DiscountCardDAO) daoFactory
                 .createAndFillDAOFromFile("discount card dao",
-                        inputDataLocation + args[1] + ".txt");
+                        args[1]);
         try {
-            String productsInString = textFileReader
-                    .read(textFileReader
-                            .getFileFromResource(
-                                    inputDataLocation + args[2] + ".txt"));
+            String productsInString = textFileReader.read(args[2]);
+
             String[] spliteStrings = productsInString.split(" ");
             for (String spliteString : spliteStrings) {
                 String[] split = spliteString.split("-");
@@ -66,8 +67,8 @@ public class InputOrderFromFile {
             }
 
             receipt = receiptCreator.getReceipt();
-        } catch (URISyntaxException | DaoException uriSyntaxException) {
-            uriSyntaxException.printStackTrace();
+        } catch (DaoException daoException) {
+            daoException.printStackTrace();
         }
 
         return receipt;

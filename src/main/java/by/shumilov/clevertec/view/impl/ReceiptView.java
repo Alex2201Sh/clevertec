@@ -13,9 +13,8 @@ import java.util.List;
  */
 public class ReceiptView implements View {
 
-    private final ReceiptCalculator receiptCalculator = new ReceiptCalculator();
-
     public String viewReceipt(Receipt receipt) {
+        ReceiptCalculator receiptCalculator = new ReceiptCalculator(receipt);
         StringBuilder resultReceipt = new StringBuilder();
         List<ReceiptLine> receiptLineList = receipt.getReceiptLineList();
 
@@ -49,10 +48,10 @@ public class ReceiptView implements View {
 
         resultReceipt           //Create footer of receipt.
                 .append(String.format("|%-36s", "Total cost:"))
-                .append(String.format("%.2f|", receiptCalculator.getTotalCost(receipt)))
+                .append(String.format("%.2f|", receiptCalculator.getTotalCost()))
                 .append("\n")
                 .append(String.format("|%-36s", "Total cost with discount:"))
-                .append(String.format("%.2f|", receiptCalculator.getTotalCostWithDiscount(receipt)))
+                .append(String.format("%.2f|", receiptCalculator.getTotalCostWithDiscount()))
                 .append("\n");
 
         return resultReceipt.toString();

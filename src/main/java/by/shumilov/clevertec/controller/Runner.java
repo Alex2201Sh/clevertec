@@ -1,26 +1,26 @@
 package by.shumilov.clevertec.controller;
 
 import by.shumilov.clevertec.bean.Receipt;
-import by.shumilov.clevertec.service.InputOrderFromFile;
-import by.shumilov.clevertec.service.db_service.InputOrderFromFileDataFromDB;
+import by.shumilov.clevertec.service.impl.InputOrderFromFile;
+import by.shumilov.clevertec.service.impl.InputOrderFromFileDataFromDB;
 import by.shumilov.clevertec.view.impl.ReceiptView;
+import by.shumilov.clevertec.view.impl.TextFileReader;
 import by.shumilov.clevertec.view.impl.TextFileWriter;
 
 public class Runner {
 
-    //Args for testing: "inputProducts", "inputDiscountCards", "smallDataInput"
-    //Args for testing with database: "db", "smallDataInput"
     public static void main(String[] args) {
         ReceiptView receiptView = new ReceiptView();
         TextFileWriter textFileWriter = new TextFileWriter();
+        TextFileReader textFileReader = new TextFileReader();
         Receipt receipt = null;
 
         if (args.length == 3) {
-            InputOrderFromFile inputOrderFromFile = new InputOrderFromFile();
+            InputOrderFromFile inputOrderFromFile = new InputOrderFromFile(textFileReader);
             receipt = inputOrderFromFile.inputOrder(args);
         } else if (args.length == 2) {
             InputOrderFromFileDataFromDB inputOrderFromFileDataFromDB
-                    = new InputOrderFromFileDataFromDB();
+                    = new InputOrderFromFileDataFromDB(textFileReader);
             receipt = inputOrderFromFileDataFromDB.inputOrder(args);
         }
 

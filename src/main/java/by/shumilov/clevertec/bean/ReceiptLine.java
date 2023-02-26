@@ -1,5 +1,7 @@
 package by.shumilov.clevertec.bean;
 
+import java.util.Objects;
+
 /**
  * Class ReceiptLine uses for containing lines
  * of Products and its quantities.
@@ -53,4 +55,29 @@ public final class ReceiptLine {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ReceiptLine that = (ReceiptLine) o;
+
+        if (quantity != that.quantity) return false;
+        return Objects.equals(product, that.product);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = quantity;
+        result = 31 * result + (product != null ? product.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ReceiptLine{" +
+                "quantity=" + quantity +
+                ", product=" + product +
+                '}';
+    }
 }

@@ -50,5 +50,25 @@ public final class DiscountCard extends Item {
         }
     }
 
+    @Override
+    public String toString() {
+        return "DiscountCard{" +
+                "discountPercentage=" + discountPercentage +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DiscountCard that = (DiscountCard) o;
+
+        return discountPercentage == that.discountPercentage;
+    }
+
+    @Override
+    public int hashCode() {
+        return discountPercentage;
+    }
 }

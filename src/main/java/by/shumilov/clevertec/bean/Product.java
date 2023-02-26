@@ -1,5 +1,7 @@
 package by.shumilov.clevertec.bean;
 
+import java.util.Objects;
+
 /**
  * Class Product represents Products.
  */
@@ -9,7 +11,7 @@ public final class Product extends Item {
     /**
      * The field isPromotion shows whether the product is promotional.
      */
-    private boolean isPromotion;
+    private boolean promotion;
 
     /**
      * The default constructor has a private access modifier
@@ -27,7 +29,7 @@ public final class Product extends Item {
     }
 
     public boolean isPromotion() {
-        return isPromotion;
+        return promotion;
     }
 
     public static Product.Builder newBuilder() {
@@ -59,7 +61,7 @@ public final class Product extends Item {
         }
 
         public Product.Builder setPromotion(final boolean newPromotion) {
-            Product.this.isPromotion = newPromotion;
+            Product.this.promotion = newPromotion;
             return this;
         }
 
@@ -68,5 +70,35 @@ public final class Product extends Item {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Product product = (Product) o;
+
+        if (Double.compare(product.price, price) != 0) return false;
+        if (promotion != product.promotion) return false;
+        return Objects.equals(name, product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = name != null ? name.hashCode() : 0;
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (promotion ? 1 : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", isPromotion=" + promotion +
+                '}';
+    }
 }

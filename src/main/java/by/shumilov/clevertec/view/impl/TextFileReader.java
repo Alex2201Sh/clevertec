@@ -19,11 +19,11 @@ public class TextFileReader implements Reader {
     /**
      * The method is used to read txt file and make String value from it.
      *
-     * @param file object of java.io.File class.
      * @return String value
      */
     @Override
-    public String read(final File file) {
+    public String read(String filename) {
+        File file = new File(filename);
         StringBuilder result = new StringBuilder();
         List<String> lines = new ArrayList<>();
         try {

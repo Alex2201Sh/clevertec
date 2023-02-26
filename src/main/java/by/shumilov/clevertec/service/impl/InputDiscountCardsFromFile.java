@@ -5,8 +5,6 @@ import by.shumilov.clevertec.dao.impl.DiscountCardDAO;
 import by.shumilov.clevertec.service.InputItems;
 import by.shumilov.clevertec.view.impl.TextFileReader;
 
-import java.net.URISyntaxException;
-
 /**
  * Class InputDiscountCardsFromFile uses to read array
  * of DiscountCards from file in "resources" folder.
@@ -24,22 +22,16 @@ public class InputDiscountCardsFromFile implements InputItems {
     @Override
     public DiscountCardDAO inputFromFile(final String fileName) {
         DiscountCardDAO discountCardDAO = new DiscountCardDAO();
-        try {
-            String productsInString = textFileReader
-                    .read(textFileReader
-                            .getFileFromResource(fileName));
-            String[] splitedLines = productsInString.split("\n");
-            for (String splitedLine : splitedLines) {
-                String[] splitedStrings = splitedLine.split(" ");
-                DiscountCard discountCard = DiscountCard.newBuilder()
-                        .setId(Integer.parseInt(splitedStrings[0]))
-                        .setDiscountPercentage(Integer
-                                .parseInt(splitedStrings[1]))
-                        .build();
-                discountCardDAO.addDiscountCardToList(discountCard);
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+        String productsInString = textFileReader.read(fileName);
+        String[] splitLines = productsInString.split("\n");
+        for (String splitLine : splitLines) {
+            String[] splitStrings = splitLine.split(" ");
+            DiscountCard discountCard = DiscountCard.newBuilder()
+                    .setId(Integer.parseInt(splitStrings[0]))
+                    .setDiscountPercentage(Integer
+                            .parseInt(splitStrings[1]))
+                    .build();
+            discountCardDAO.addDiscountCardToList(discountCard);
         }
         return discountCardDAO;
     }
