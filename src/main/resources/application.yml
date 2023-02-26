@@ -1,0 +1,3 @@
+algorithm: lru
+maxLength: 3
+initCapacity: 3
