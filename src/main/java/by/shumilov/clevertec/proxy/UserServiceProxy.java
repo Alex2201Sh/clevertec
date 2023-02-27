@@ -1,8 +1,8 @@
 package by.shumilov.clevertec.proxy;
 
 import by.shumilov.clevertec.bean.User;
-import by.shumilov.clevertec.UserService;
-import by.shumilov.clevertec.UserServiceImpl;
+import by.shumilov.clevertec.service_user.UserService;
+import by.shumilov.clevertec.service_user.UserServiceImpl;
 
 import java.lang.reflect.Proxy;
 

@@ -3,21 +3,14 @@ package by.shumilov.clevertec.cache;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- *
  * LRUCache: Class to cache objects based on LRU (Least Recently Used) cache eviction strategy,
  * wherein if the cache size has reached the maximum allocated capacity, the
  * least recently used objects in the cache will be evicted.
  *
  * See the runner function(a.k.a main(...)) to see the working.
  *
- * @author sunil
- *
  * @param <K>
  * @param <V>
- *
- * <p>
- *        Date: 14/Nov/2019
- * </p>
  */
 public final class LRUCache<K, V> implements Cache {
 
@@ -64,10 +57,6 @@ public final class LRUCache<K, V> implements Cache {
      * objects (read/write) at the tail-end and the least read objects at the head.
      */
     private Node<K, V> head, tail;
-
-
-
-
 
     public LRUCache(int maxCapacity) {
         this(16, maxCapacity);
@@ -171,50 +160,4 @@ public final class LRUCache<K, V> implements Cache {
         }
         System.out.println();
     }
-
-    /**
-     * Runner program to test the LRU cache
-     * @param args
-     */
-    public static void main(String[] args) {
-
-/**
- * 1. create LRUCache of initial capacity 10
- * 2. insert 10 objects to cache
- * 3. print the cache objects
- * 4. access the first object and print the cache
- * 5. insert new objects to cache
- * 6. print the cache and observe that the least recently used
- *    objects are evicted
- */
-
-
-// 1. initiate the cache with capacity 10
-        LRUCache<String, String> cache = new LRUCache<String, String>(10);
-
-// 2. insert 10 objects to cache
-        for(int i=1; i<=10; i++) {
-            cache.put(String.format("key-%d",  i), String.format("value-%d",  i));
-        }
-
-// 3. print the cache objects
-        System.out.println("printing cache:");
-        cache.printCache();
-
-// 4. access the first object and print the cache
-        cache.get("key-1");
-        System.out.println("printing cache after accessing key-1:");
-        cache.printCache();
-
-// 5. insert new objects to cache
-        for(int i=11; i<=15; i++) {
-            cache.put(String.format("key-%d",  i), String.format("value-%d",  i));
-        }
-
-// 6. print the cache and observe that the least recently used objects are evicted
-        System.out.println("printing cache after adding new objects:");
-        cache.printCache();
-
-    }
-
 }

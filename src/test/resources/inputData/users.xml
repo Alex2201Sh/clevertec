@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+">
+    <user>
+        <id>1</id>
+        <name>aaa</name>
+        <password>testPass</password>
+        <email>test@test.by</email>
+    </user>
+    <user>
+        <id>2</id>
+        <name>bbb</name>
+        <password>testPass</password>
+        <email>test@test.by</email>
+    </user>
+    <user>
+        <id>3</id>
+        <name>ccc</name>
+        <password>testPass</password>
+        <email>test@test.by</email>
+    </user>
+
+</users>

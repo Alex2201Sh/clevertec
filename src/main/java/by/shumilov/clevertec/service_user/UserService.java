@@ -1,4 +1,4 @@
-package by.shumilov.clevertec;
+package by.shumilov.clevertec.service_user;
 
 import by.shumilov.clevertec.bean.User;
 

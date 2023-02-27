@@ -1,7 +1,7 @@
 package by.shumilov.clevertec.proxy;
 
 import by.shumilov.clevertec.annotation.CustomAnnotation;
-import by.shumilov.clevertec.UserService;
+import by.shumilov.clevertec.service_user.UserService;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
