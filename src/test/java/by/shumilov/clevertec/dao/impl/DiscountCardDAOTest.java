@@ -8,17 +8,20 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class DiscountCardDAOTest {
 
     DiscountCardDAO discountCardDAO = new DiscountCardDAO();
-    private List<DiscountCard> discountCardList = new ArrayList<>();
-    private DiscountCard card1 = DiscountCard.newBuilder().setId(1).build();
-    private DiscountCard card2 = DiscountCard.newBuilder().setId(2).build();
+    private final List<DiscountCard> discountCardList = new ArrayList<>();
+    private DiscountCard card1;
+    private DiscountCard card2;
 
     @BeforeEach
     void init() {
+        card1 = DiscountCard.newBuilder().setId(1).build();
+        card2 = DiscountCard.newBuilder().setId(2).build();
         discountCardDAO.addDiscountCardToList(card1);
         discountCardDAO.addDiscountCardToList(card2);
         discountCardList.add(card1);
@@ -27,7 +30,7 @@ class DiscountCardDAOTest {
 
     @Test
     void findById() throws DaoException {
-        assertEquals(card1, discountCardDAO.findById(1));
+        assertThat(discountCardDAO.findById(1)).isEqualTo(card1);
     }
 
     @Test
@@ -35,11 +38,11 @@ class DiscountCardDAOTest {
         int initSize = discountCardDAO.getDiscountCardList().size();
         discountCardDAO.addDiscountCardToList(card1);
         int resultSize = discountCardDAO.getDiscountCardList().size();
-        assertEquals(initSize + 1, resultSize);
+        assertThat(resultSize).isEqualTo(initSize + 1);
     }
 
     @Test
     void getDiscountCardList() {
-        assertEquals(discountCardList, discountCardDAO.getDiscountCardList());
+        assertThat(discountCardDAO.getDiscountCardList()).isEqualTo(discountCardList);
     }
 }

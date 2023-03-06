@@ -4,7 +4,7 @@ import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Receipt;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ReceiptViewTest {
 
@@ -14,6 +14,6 @@ class ReceiptViewTest {
     void viewReceipt() {
         Receipt receipt = new Receipt();
         receipt.setDiscountCard(DiscountCard.newBuilder().setId(1).build());
-        assertEquals(String.class, receiptView.viewReceipt(receipt).getClass());
+        assertThat(receiptView.viewReceipt(receipt)).isInstanceOf(String.class);
     }
 }

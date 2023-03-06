@@ -1,15 +1,10 @@
 package by.shumilov.clevertec.service.impl;
 
 import by.shumilov.clevertec.bean.Receipt;
-import by.shumilov.clevertec.service.impl.InputOrderFromFileDataFromDB;
 import by.shumilov.clevertec.view.impl.TextFileReader;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InputOrderFromFileDataFromDBTest {
 
@@ -19,6 +14,6 @@ class InputOrderFromFileDataFromDBTest {
     @Test
     void inputOrder() {
         Receipt receipt = inputOrder.inputOrder(new String[]{"db", "src/test/resources/inputData/receiptValid.txt"});
-        assertTrue(receipt.getReceiptLineList().size() > 0);
+        Assertions.assertThat(receipt.getReceiptLineList().size() > 0).isTrue();
     }
 }

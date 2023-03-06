@@ -1,17 +1,14 @@
 package by.shumilov.clevertec.dao_user;
 
 import by.shumilov.clevertec.bean.User;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class UserDAOTest {
 
@@ -25,7 +22,7 @@ class UserDAOTest {
         Field userList = userDAO.getClass().getDeclaredField("userList");
         userList.setAccessible(true);
         List<User> userListFromDao = (List<User>) userList.get(userDAO);
-        Assertions.assertThat(userListFromDao.contains(testUser)).isTrue();
+        assertThat(userListFromDao.contains(testUser)).isTrue();
     }
 
     @Test
@@ -34,7 +31,7 @@ class UserDAOTest {
         User testUser = User.newBuilder().setId(testId).build();
         userDAO.addUser(testUser);
         User userById = userDAO.getUserById(testId);
-        Assertions.assertThat(userById).isEqualTo(testUser);
+        assertThat(userById).isEqualTo(testUser);
     }
 
     @Test
@@ -47,7 +44,7 @@ class UserDAOTest {
         testUser.setName(newTestName);
         userDAO.updateUser(testUser);
         User userById = userDAO.getUserById(testId);
-        Assertions.assertThat(userById.getName()).isEqualTo(newTestName);
+        assertThat(userById.getName()).isEqualTo(newTestName);
     }
 
     @Test
@@ -58,7 +55,7 @@ class UserDAOTest {
         userDAO.addUser(testUser);
         userDAO.deleteUser(testUser);
         User userById = userDAO.getUserById(testId);
-        Assertions.assertThat(userById).isNull();
+        assertThat(userById).isNull();
     }
 
     @Test
@@ -71,6 +68,6 @@ class UserDAOTest {
         Field userList = userDAO.getClass().getDeclaredField("userList");
         userList.setAccessible(true);
         List<User> userListFromDao = (List<User>) userList.get(userDAO);
-        Assertions.assertThat(userListFromDao).isEqualTo(userTestList);
+        assertThat(userListFromDao).isEqualTo(userTestList);
     }
 }

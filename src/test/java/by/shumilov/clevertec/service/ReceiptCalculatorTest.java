@@ -4,13 +4,14 @@ import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ReceiptCalculatorTest {
 
@@ -32,11 +33,16 @@ class ReceiptCalculatorTest {
 
     @Test
     void getTotalCost() {
-        assertEquals(5.55,calculator.getTotalCost(),0.1);
+        double actualTotalCost = calculator.getTotalCost();
+        double expectedTotalCost = 5.55;
+        assertThat(actualTotalCost).isCloseTo(expectedTotalCost, Percentage.withPercentage(0.1));
     }
 
     @Test
     void getTotalCostWithDiscount() {
-        assertEquals(4.99,calculator.getTotalCostWithDiscount(),0.1);
+        double actualTotalCostWithDiscount = calculator.getTotalCostWithDiscount();
+        double expectedTotalCostWithDiscount = 5.00;
+        assertThat(actualTotalCostWithDiscount)
+                .isCloseTo(expectedTotalCostWithDiscount, Percentage.withPercentage(0.1));
     }
 }

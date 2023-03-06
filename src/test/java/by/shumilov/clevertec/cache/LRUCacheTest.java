@@ -1,7 +1,5 @@
 package by.shumilov.clevertec.cache;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LRUCacheTest {
 
@@ -22,8 +20,8 @@ class LRUCacheTest {
         IntStream.range(0,capacity).forEach(value -> cache.put(value,"xxx"));
         cache.get(1);
         cache.get(2);
-        cache.put(100,"yyy");
-        Assertions.assertThat(cache.get(key)).isEqualTo(result);
+        cache.put(100, "yyy");
+        assertThat(cache.get(key)).isEqualTo(result);
         System.out.println(cache.toString());
     }
 
@@ -32,7 +30,7 @@ class LRUCacheTest {
     void put(int key, String value, String result) {
         cache = new LRUCache<>(3);
         cache.put(key, value);
-        Assertions.assertThat(cache.get(key)).isEqualTo(result);
+        assertThat(cache.get(key)).isEqualTo(result);
     }
 
     static Stream<Arguments> getArgumentsForGet() {

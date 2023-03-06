@@ -5,10 +5,11 @@ import by.shumilov.clevertec.cache.Cache;
 import by.shumilov.clevertec.dao_user.UserDAO;
 import by.shumilov.clevertec.dao_user.UserDAOFactory;
 import by.shumilov.clevertec.dao_user.UserDAOFactoryImpl;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class UserServiceImplTest {
 
@@ -23,7 +24,7 @@ class UserServiceImplTest {
         User expectedUser = User.newBuilder().setId(testId).build();
         service.postUser(expectedUser);
         User actualUser = service.getUser(testId);
-        Assertions.assertThat(actualUser).isEqualTo(expectedUser);
+        assertThat(actualUser).isEqualTo(expectedUser);
     }
 
     @Test
@@ -39,7 +40,7 @@ class UserServiceImplTest {
         service.postUser(expectedUser);
         User userFromCache = (User) cache.get(testId);
         User userFromDao = userDAO.getUserById(testId);
-        Assertions.assertThat(userFromCache).isEqualTo(userFromDao).isEqualTo(expectedUser);
+        assertThat(userFromCache).isEqualTo(userFromDao).isEqualTo(expectedUser);
     }
 
     @Test
@@ -48,7 +49,7 @@ class UserServiceImplTest {
         User testUser = User.newBuilder().setId(testId).build();
         service.postUser(testUser);
         service.deleteUser(testUser);
-        Assertions.assertThat(service.getUser(testId)).isNull();
+        assertThat(service.getUser(testId)).isNull();
     }
 
     @Test
@@ -60,6 +61,6 @@ class UserServiceImplTest {
         testUser.setName(expectedName);
         service.putUser(testUser);
         String actualNameFromService = service.getUser(testId).getName();
-        Assertions.assertThat(actualNameFromService).isEqualTo(expectedName);
+        assertThat(actualNameFromService).isEqualTo(expectedName);
     }
 }

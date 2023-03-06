@@ -8,7 +8,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ParserReceiptJsonTest {
 
@@ -44,14 +45,14 @@ class ParserReceiptJsonTest {
                 "{\"quantity\":5,\"product\":{\"id\":0,\"name\":\"abc\",\"price\":1.11,\"promotion\":true}}]}";
         Receipt actualReceipt = parser.deSerialize(json);
         Receipt expectedReceipt = getReceipt(json);
-        Assertions.assertThat(actualReceipt).isEqualTo(expectedReceipt);
+        assertThat(actualReceipt).isEqualTo(expectedReceipt);
     }
 
     @Test
     void serializeCheck() {
         String actualResult = parser.serialize(receipt);
         String expectedResult = mapperWrite(receipt);
-        Assertions.assertThat(actualResult).isEqualTo(expectedResult);
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 
     private static ObjectMapper newMapper() {

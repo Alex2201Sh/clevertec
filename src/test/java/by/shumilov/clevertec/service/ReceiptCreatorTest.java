@@ -4,7 +4,7 @@ import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ReceiptCreatorTest {
 
@@ -15,11 +15,11 @@ class ReceiptCreatorTest {
         int initSize = receiptCreator.getReceipt().getReceiptLineList().size();
         receiptCreator.addLineToReceipt(ReceiptLine.newBuilder().build());
         int resultSize = receiptCreator.getReceipt().getReceiptLineList().size();
-        assertEquals(initSize + 1, resultSize);
+        assertThat(resultSize).isEqualTo(initSize + 1);
     }
 
     @Test
     void getReceipt() {
-        assertEquals(Receipt.class, receiptCreator.getReceipt().getClass());
+        assertThat(receiptCreator.getReceipt()).isInstanceOf(Receipt.class);
     }
 }
