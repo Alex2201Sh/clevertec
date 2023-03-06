@@ -29,14 +29,7 @@ public final class LFUCache<K, V> implements Cache{
     @Override
     public void put(Object key, Object value) {
         doEvictionIfNeeded((K) key);
-        Node oldNode = storage.put((K) key, new Node((V) value));
-        if (oldNode == null) {
-//            return null;
-        }
-//        return oldNode.getValue();
     }
-
-
 
     private void doEvictionIfNeeded(K putKey) {
         if (storage.size() < capacity) {

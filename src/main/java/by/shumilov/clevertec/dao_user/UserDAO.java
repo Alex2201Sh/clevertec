@@ -4,6 +4,7 @@ import by.shumilov.clevertec.bean.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class UserDAO {
 
@@ -16,7 +17,10 @@ public class UserDAO {
 
     //READ
     public User getUserById(int id) {
-        return userList.stream().filter(user -> user.getId() == id).findFirst().get();
+        return userList.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     //UPDATE

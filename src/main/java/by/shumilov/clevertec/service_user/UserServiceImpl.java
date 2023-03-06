@@ -1,4 +1,4 @@
-package by.shumilov.clevertec;
+package by.shumilov.clevertec.service_user;
 
 import by.shumilov.clevertec.annotation.CustomAnnotation;
 import by.shumilov.clevertec.bean.User;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void postUser(User user){
-        if (userDao.getUserById(user.getId())!=null){
+        if (userDao.getUserById(user.getId())==null){
             userDao.addUser(user);
             cache.put(user.getId(), user);
         } else {
