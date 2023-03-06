@@ -3,7 +3,6 @@ package by.shumilov.clevertec.service_user;
 import by.shumilov.clevertec.bean.User;
 import by.shumilov.clevertec.cache.Cache;
 import by.shumilov.clevertec.dao_user.UserDAO;
-import by.shumilov.clevertec.dao_user.UserDAOFactory;
 import by.shumilov.clevertec.dao_user.UserDAOFactoryImpl;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +11,7 @@ import java.lang.reflect.Field;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class UserServiceImplTest {
-
-    private UserDAOFactory factory = new UserDAOFactoryImpl();
-    private UserDAO userDao = factory.getUserDao();
-    private final UserServiceImpl service = new UserServiceImpl();
-
+    private final UserServiceImpl service = new UserServiceImpl(new UserDAOFactoryImpl());
 
     @Test
     void getUser() {

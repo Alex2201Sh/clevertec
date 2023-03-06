@@ -13,6 +13,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.HashSet;
 
+/**
+ * Class UserDOMBuilder creates DOM model from xml file
+ * and transforms it into list.
+ */
 public class UserDOMBuilder extends AbstractUserBuilder {
     private final DocumentBuilder docBuilder;
 
@@ -28,6 +32,12 @@ public class UserDOMBuilder extends AbstractUserBuilder {
         }
     }
 
+    /**
+     * Method creates List of User objects
+     * and writes it into
+     *
+     * @param myFilename - path to xml file with represents of User objects.
+     */
     @Override
     public void buildSetUsers(String myFilename) {
         Document doc;

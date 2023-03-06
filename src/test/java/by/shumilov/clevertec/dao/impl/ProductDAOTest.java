@@ -2,7 +2,6 @@ package by.shumilov.clevertec.dao.impl;
 
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.dao.exception.DaoException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductDAOTest {
 
-    ProductDAO productDAO = new ProductDAO();
+    private final ProductDAO productDAO = new ProductDAO();
     private final List<Product> productList = new ArrayList<>();
     private final Product product1 = Product.newBuilder().setId(1).build();
     private final Product product2 = Product.newBuilder().setId(2).build();
@@ -29,7 +28,7 @@ class ProductDAOTest {
 
     @Test
     void findById() throws DaoException {
-        Assertions.assertThat(productDAO.findById(1)).isEqualTo(product1);
+        assertThat(productDAO.findById(1)).isEqualTo(product1);
     }
 
     @Test
@@ -37,7 +36,7 @@ class ProductDAOTest {
         int initSize = productDAO.getProductList().size();
         productDAO.addProductToList(product1);
         int resultSize = productDAO.getProductList().size();
-        Assertions.assertThat(resultSize).isEqualTo(initSize + 1);
+        assertThat(resultSize).isEqualTo(initSize + 1);
     }
 
     @Test

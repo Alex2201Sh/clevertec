@@ -13,16 +13,10 @@ class LRUCacheTest {
 
     private LRUCache<Integer, String> cache;
 
-    @ParameterizedTest
-    @MethodSource("getArgumentsForGet")
-    void get(int capacity, int key, String result) {
-        cache = new LRUCache<>(capacity);
-        IntStream.range(0,capacity).forEach(value -> cache.put(value,"xxx"));
-        cache.get(1);
-        cache.get(2);
-        cache.put(100, "yyy");
-        assertThat(cache.get(key)).isEqualTo(result);
-        System.out.println(cache.toString());
+    static Stream<Arguments> getArgumentsForGet() {
+        return Stream.of(
+                Arguments.of(3, 3, null),
+                Arguments.of(3, 100, "yyy"));
     }
 
     @ParameterizedTest
@@ -33,17 +27,23 @@ class LRUCacheTest {
         assertThat(cache.get(key)).isEqualTo(result);
     }
 
-    static Stream<Arguments> getArgumentsForGet() {
-        return Stream.of(
-                Arguments.of(3,3,null),
-                Arguments.of(3,100,"yyy"));
-    }
-
     static Stream<Arguments> getArgumentsForPut() {
         return Stream.of(
-                Arguments.of(1,"aaa","aaa"),
-                Arguments.of(1,"bbb","bbb"),
-                Arguments.of(2,"ccc","ccc")
+                Arguments.of(1, "aaa", "aaa"),
+                Arguments.of(1, "bbb", "bbb"),
+                Arguments.of(2, "ccc", "ccc")
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("getArgumentsForGet")
+    void get(int capacity, int key, String result) {
+        cache = new LRUCache<>(capacity);
+        IntStream.range(0, capacity).forEach(value -> cache.put(value, "xxx"));
+        cache.get(1);
+        cache.get(2);
+        cache.put(100, "yyy");
+        assertThat(cache.get(key)).isEqualTo(result);
+        System.out.println(cache.toString());
     }
 }

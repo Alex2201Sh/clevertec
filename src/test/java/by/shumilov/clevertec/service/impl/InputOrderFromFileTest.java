@@ -23,9 +23,7 @@ class InputOrderFromFileTest {
         try {
             inputOrder.inputOrder(new String[]
                     {productsSource, discountCardsSource, receiptSource});
-        } catch (ArrayIndexOutOfBoundsException e) {
-            assertThat(expected).isFalse();
-        } catch (Exception e){
+        } catch (Exception e) {
             assertThat(expected).isFalse();
         }
     }

@@ -1,6 +1,7 @@
 package by.shumilov.clevertec.proxy;
 
 import by.shumilov.clevertec.bean.User;
+import by.shumilov.clevertec.dao_user.UserDAOFactoryImpl;
 import by.shumilov.clevertec.service_user.UserService;
 import by.shumilov.clevertec.service_user.UserServiceImpl;
 
@@ -11,7 +12,7 @@ public class UserServiceProxy implements UserService {
     private static UserService userService;
 
     static {
-        userService = new UserServiceImpl();
+        userService = new UserServiceImpl(new UserDAOFactoryImpl());
         ClassLoader loader = userService.getClass().getClassLoader();
         Class<?>[] interfaces = userService.getClass().getInterfaces();
         userService = (UserService) Proxy.newProxyInstance(loader, interfaces, new UserServiceInvocationHandler(userService));

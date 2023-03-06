@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UserDOMBuilderTest {
 
-    AbstractUserBuilder abstractUserBuilder = new UserDOMBuilder();
+    private final AbstractUserBuilder abstractUserBuilder = new UserDOMBuilder();
     @Test
     void buildSetUsers() {
         abstractUserBuilder.buildSetUsers("src/test/resources/inputData/users.xml");
