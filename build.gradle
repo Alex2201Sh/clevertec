@@ -21,6 +21,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.14.2'
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 test {
