@@ -2,18 +2,13 @@ package by.shumilov.clevertec.service_user;
 
 import by.shumilov.clevertec.bean.User;
 import by.shumilov.clevertec.cache.Cache;
-import by.shumilov.clevertec.cache.CacheCreator;
 import by.shumilov.clevertec.dao_user.UserDAO;
 import by.shumilov.clevertec.dao_user.UserDAOFactory;
 import by.shumilov.clevertec.dao_user.UserDAOFactoryImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import java.lang.reflect.Field;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceImplTest {
 

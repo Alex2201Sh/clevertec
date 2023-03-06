@@ -1,0 +1,2 @@
+algorithm: lfu
+initCapacity: 4
