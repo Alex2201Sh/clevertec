@@ -14,7 +14,8 @@ public class ParserReceiptJson implements Parser{
 
     @Override
     public Receipt deSerialize(String json) {
-        Receipt receipt = new Receipt();
+        Receipt receipt = Receipt.anReceipt().build();
+
 
         int discountCardIndex = json.indexOf("discountCard") + "discountCard".length();
         int discountCardIdIndex = json.indexOf("id", discountCardIndex) + 4;
@@ -22,8 +23,8 @@ public class ParserReceiptJson implements Parser{
         int discountPercentageIndex = json.indexOf("discountPercentage") + "discountPercentage".length() + 2;
         int discountPercentage = Integer.parseInt(json.substring(discountPercentageIndex, json.indexOf("}", discountPercentageIndex)));
 
-        receipt.setDiscountCard(DiscountCard.newBuilder()
-                .setId(discountCardId)
+        receipt.setDiscountCard(DiscountCard.builder()
+                .superId(discountCardId)
                 .setDiscountPercentage(discountPercentage)
                 .build());
 
@@ -50,13 +51,13 @@ public class ParserReceiptJson implements Parser{
             int promotionIndex = json.indexOf("promotion", productPriceIndex) + "promotion".length() + 2;
             boolean productPromotion = Boolean.parseBoolean(json.substring(promotionIndex, json.indexOf("}", promotionIndex)));
 
-            Product product = Product.newBuilder()
-                    .setId(productId)
+            Product product = Product.builder()
+                    .superId(productId)
                     .setName(productName)
                     .setPrice(productPrice)
                     .setPromotion(productPromotion)
                     .build();
-            ReceiptLine receiptLine = ReceiptLine.newBuilder()
+            ReceiptLine receiptLine = ReceiptLine.anReceiptLine()
                     .setQuantity(quantity)
                     .setProduct(product)
                     .build();

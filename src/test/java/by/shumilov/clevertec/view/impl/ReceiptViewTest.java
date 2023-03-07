@@ -12,8 +12,8 @@ class ReceiptViewTest {
 
     @Test
     void viewReceipt() {
-        Receipt receipt = new Receipt();
-        receipt.setDiscountCard(DiscountCard.newBuilder().setId(1).build());
+        Receipt receipt = Receipt.anReceipt().build();
+        receipt.setDiscountCard(DiscountCard.builder().superId(1).build());
         assertThat(receiptView.viewReceipt(receipt)).isInstanceOf(String.class);
     }
 }

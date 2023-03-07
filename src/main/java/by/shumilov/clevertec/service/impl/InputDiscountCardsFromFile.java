@@ -26,8 +26,8 @@ public class InputDiscountCardsFromFile implements InputItems {
         String[] splitLines = productsInString.split("\n");
         for (String splitLine : splitLines) {
             String[] splitStrings = splitLine.split(" ");
-            DiscountCard discountCard = DiscountCard.newBuilder()
-                    .setId(Integer.parseInt(splitStrings[0]))
+            DiscountCard discountCard = DiscountCard.builder()
+                    .superId(Integer.parseInt(splitStrings[0]))
                     .setDiscountPercentage(Integer
                             .parseInt(splitStrings[1]))
                     .build();

@@ -39,12 +39,18 @@ public class ProductFromDB implements ItemDAO {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 boolean isPromotion = resultSet.getBoolean("is_promotion");
-                product = Product.newBuilder()
-                        .setId(id1)
+                product = Product.builder()
+                        .superId(id1)
                         .setName(name)
                         .setPrice(price)
                         .setPromotion(isPromotion)
                         .build();
+//                product = Product.newBuilder()
+//                        .setId(id1)
+//                        .setName(name)
+//                        .setPrice(price)
+//                        .setPromotion(isPromotion)
+//                        .build();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

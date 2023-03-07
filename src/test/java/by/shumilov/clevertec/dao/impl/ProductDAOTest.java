@@ -15,8 +15,8 @@ class ProductDAOTest {
 
     private final ProductDAO productDAO = new ProductDAO();
     private final List<Product> productList = new ArrayList<>();
-    private final Product product1 = Product.newBuilder().setId(1).build();
-    private final Product product2 = Product.newBuilder().setId(2).build();
+    private final Product product1 = Product.builder().superId(1).build();
+    private final Product product2 = Product.builder().superId(2).build();
 
     @BeforeEach
     void init() {

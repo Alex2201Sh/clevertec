@@ -15,17 +15,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ReceiptCalculatorTest {
 
-    private final Receipt receipt = new Receipt();
+    private final Receipt receipt = Receipt.anReceipt().build();
     private final ReceiptCalculator calculator = new ReceiptCalculator(receipt);
 
     @BeforeEach
     void init() {
-        receipt.setDiscountCard(DiscountCard.newBuilder().setDiscountPercentage(10).setId(1).build());
-        Product product1 = Product.newBuilder().setPrice(1.11).build();
-        Product product2 = Product.newBuilder().setPrice(2.22).build();
+        receipt.setDiscountCard(DiscountCard.builder().setDiscountPercentage(10).superId(1).build());
+        Product product1 = Product.builder().setPrice(1.11).build();
+        Product product2 = Product.builder().setPrice(2.22).build();
         List<ReceiptLine> receiptLineList = new ArrayList<>();
-        ReceiptLine receiptLine1 = ReceiptLine.newBuilder().setProduct(product1).setQuantity(1).build();
-        ReceiptLine receiptLine2 = ReceiptLine.newBuilder().setProduct(product2).setQuantity(2).build();
+        ReceiptLine receiptLine1 = ReceiptLine.anReceiptLine().setProduct(product1).setQuantity(1).build();
+        ReceiptLine receiptLine2 = ReceiptLine.anReceiptLine().setProduct(product2).setQuantity(2).build();
         receiptLineList.add(receiptLine1);
         receiptLineList.add(receiptLine2);
         receipt.setReceiptLineList(receiptLineList);

@@ -21,8 +21,8 @@ class DiscountCardDAOTest {
     private final List<DiscountCard> discountCardList = new ArrayList<>();
 
     static Stream<Arguments> getArguments() {
-        DiscountCard card1 = DiscountCard.newBuilder().setId(1).build();
-        DiscountCard card2 = DiscountCard.newBuilder().setId(2).build();
+        DiscountCard card1 = DiscountCard.builder().superId(1).build();
+        DiscountCard card2 = DiscountCard.builder().superId(2).build();
         return Stream.of(
                 Arguments.of(1, card1),
                 Arguments.of(2, card2)
@@ -31,8 +31,8 @@ class DiscountCardDAOTest {
 
     @BeforeEach
     void init() {
-        DiscountCard card1 = DiscountCard.newBuilder().setId(1).build();
-        DiscountCard card2 = DiscountCard.newBuilder().setId(2).build();
+        DiscountCard card1 = DiscountCard.builder().superId(1).build();
+        DiscountCard card2 = DiscountCard.builder().superId(2).build();
         discountCardDAO.addDiscountCardToList(card1);
         discountCardDAO.addDiscountCardToList(card2);
         discountCardList.add(card1);
@@ -48,7 +48,7 @@ class DiscountCardDAOTest {
     @Test
     void addDiscountCardToList() {
         int initSize = discountCardDAO.getDiscountCardList().size();
-        discountCardDAO.addDiscountCardToList(DiscountCard.newBuilder().setId(100).build());
+        discountCardDAO.addDiscountCardToList(DiscountCard.builder().superId(100).build());
         int resultSize = discountCardDAO.getDiscountCardList().size();
         assertThat(resultSize).isEqualTo(initSize + 1);
     }

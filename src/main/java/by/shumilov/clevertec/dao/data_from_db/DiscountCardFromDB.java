@@ -35,10 +35,14 @@ public class DiscountCardFromDB implements ItemDAO {
             while (resultSet.next()) {
                 int id1 = resultSet.getInt("id");
                 int discountPercentage = resultSet.getInt("discount_percentage");
-                discountCard = DiscountCard.newBuilder()
-                        .setId(id1)
+                discountCard = DiscountCard.builder()
+                        .superId(id1)
                         .setDiscountPercentage(discountPercentage)
                         .build();
+//                discountCard = DiscountCard.newBuilder()
+//                        .setId(id1)
+//                        .setDiscountPercentage(discountPercentage)
+//                        .build();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

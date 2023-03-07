@@ -13,7 +13,7 @@ class ReceiptCreatorTest {
     @Test
     void addLineToReceipt() {
         int initSize = receiptCreator.getReceipt().getReceiptLineList().size();
-        receiptCreator.addLineToReceipt(ReceiptLine.newBuilder().build());
+        receiptCreator.addLineToReceipt(ReceiptLine.anReceiptLine().build());
         int resultSize = receiptCreator.getReceipt().getReceiptLineList().size();
         assertThat(resultSize).isEqualTo(initSize + 1);
     }

@@ -1,8 +1,15 @@
 package by.shumilov.clevertec.bean;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+
 /**
  * Class DiscountCard represents discount cards.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder(setterPrefix = "set")
 public final class DiscountCard extends Item {
 
     /**
@@ -15,60 +22,62 @@ public final class DiscountCard extends Item {
      * The default constructor has a private access modifier
      * create new objects only through the "builder" pattern.
      */
-    private DiscountCard() {
-    }
-
-    public int getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public static Builder newBuilder() {
-        return new DiscountCard().new Builder();
-    }
-
-    /**
-     * Pattern "builder" uses to create new DiscountCard objects
-     * without constructors of DiscountCard class.
-     */
-    public final class Builder {
-
-        private Builder() {
-        }
-
-        public Builder setId(final int id) {
-            DiscountCard.this.setId(id);
-            return this;
-        }
-
-        public Builder setDiscountPercentage(final int newDiscountPercentage) {
-            DiscountCard.this.discountPercentage = newDiscountPercentage;
-            return this;
-        }
-
-        public DiscountCard build() {
-            return DiscountCard.this;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "DiscountCard{" +
-                "discountPercentage=" + discountPercentage +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DiscountCard that = (DiscountCard) o;
-
-        return discountPercentage == that.discountPercentage;
-    }
-
-    @Override
-    public int hashCode() {
-        return discountPercentage;
-    }
+//    private DiscountCard() {
+//    }
+//
+//    public int getDiscountPercentage() {
+//        return discountPercentage;
+//    }
+//
+//    public static Builder newBuilder() {
+//        return new DiscountCard().new Builder();
+//    }
+//
+//    /**
+//     * Pattern "builder" uses to create new DiscountCard objects
+//     * without constructors of DiscountCard class.
+//     */
+//    public final class Builder {
+//
+//        private Builder() {
+//        }
+//
+//        public Builder setId(final int id) {
+//            DiscountCard.this.setId(id);
+//            return this;
+//        }
+//
+//        public Builder setDiscountPercentage(final int newDiscountPercentage) {
+//            DiscountCard.this.discountPercentage = newDiscountPercentage;
+//            return this;
+//        }
+//
+//        public DiscountCard build() {
+//            return DiscountCard.this;
+//        }
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "DiscountCard{" +
+//                "discountPercentage=" + discountPercentage +
+//                '}';
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        DiscountCard that = (DiscountCard) o;
+//
+//        return discountPercentage == that.discountPercentage;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return discountPercentage;
+//    }
 }
+
+

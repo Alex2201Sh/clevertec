@@ -21,18 +21,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ParserReceiptJsonTest {
 
     private final ParserReceiptJson parser = new ParserReceiptJson();
-    private final Receipt receipt = new Receipt();
+    private final Receipt receipt = Receipt.anReceipt().build();
 
     @BeforeEach
     void init() {
-        receipt.setDiscountCard(DiscountCard.newBuilder().setDiscountPercentage(10).setId(1).build());
-        Product product1 = Product.newBuilder().setPrice(1.11).setName("abc").setPromotion(true).build();
-        Product product2 = Product.newBuilder().setPrice(2.22).setPromotion(false).build();
-        Product product3 = Product.newBuilder().setPrice(3.33).setPromotion(false).build();
+        receipt.setDiscountCard(DiscountCard.builder().setDiscountPercentage(10).superId(1).build());
+        Product product1 = Product.builder().setPrice(1.11).setName("abc").setPromotion(true).build();
+        Product product2 = Product.builder().setPrice(2.22).setPromotion(false).build();
+        Product product3 = Product.builder().setPrice(3.33).setPromotion(false).build();
         List<ReceiptLine> receiptLineList = new ArrayList<>();
-        receiptLineList.add(ReceiptLine.newBuilder().setProduct(product1).setQuantity(1).build());
-        receiptLineList.add(ReceiptLine.newBuilder().setProduct(product2).setQuantity(2).build());
-        receiptLineList.add(ReceiptLine.newBuilder().setProduct(product3).setQuantity(5).build());
+        receiptLineList.add(ReceiptLine.anReceiptLine().setProduct(product1).setQuantity(1).build());
+        receiptLineList.add(ReceiptLine.anReceiptLine().setProduct(product2).setQuantity(2).build());
+        receiptLineList.add(ReceiptLine.anReceiptLine().setProduct(product3).setQuantity(5).build());
         receipt.setReceiptLineList(receiptLineList);
     }
 

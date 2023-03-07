@@ -52,7 +52,7 @@ public class InputOrderFromFile implements InputOrder {
                     Product productById = productDAO
                             .findById(Integer.parseInt(split[0]));
                     int quantity = Integer.parseInt(split[1]);
-                    receiptCreator.addLineToReceipt(ReceiptLine.newBuilder()
+                    receiptCreator.addLineToReceipt(ReceiptLine.anReceiptLine()
                             .setQuantity(quantity)
                             .setProduct(productById)
                             .build());

@@ -18,8 +18,8 @@ class TextFileWriterTest {
 
     @Test
     void writeReceiptToFile() {
-        Receipt receipt = new Receipt();
-        receipt.setDiscountCard(DiscountCard.newBuilder().setId(1).build());
+        Receipt receipt = Receipt.anReceipt().build();
+        receipt.setDiscountCard(DiscountCard.builder().superId(1).build());
         writer.writeReceiptToFile(receipt, filePath);
         File file = new File(filePath);
         assertThat(file.exists() && !file.isDirectory()).isTrue();

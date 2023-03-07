@@ -59,7 +59,7 @@ public class InputOrderFromFileDataFromDB implements InputOrder {
                 Product productById = productFromDB
                         .findById(Integer.parseInt(split[0]));
                 int quantity = Integer.parseInt(split[1]);
-                receiptCreator.addLineToReceipt(ReceiptLine.newBuilder()
+                receiptCreator.addLineToReceipt(ReceiptLine.anReceiptLine()
                         .setQuantity(quantity)
                         .setProduct(productById)
                         .build());

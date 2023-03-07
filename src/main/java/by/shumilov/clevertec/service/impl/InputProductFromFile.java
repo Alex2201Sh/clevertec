@@ -26,8 +26,8 @@ public class InputProductFromFile implements InputItems {
         String[] splitedLines = productsInString.split("\n");
         for (String splitedLine : splitedLines) {
             String[] splitedProduct = splitedLine.split(" ");
-            Product product = Product.newBuilder()
-                    .setId(Integer.parseInt(splitedProduct[0]))
+            Product product = Product.builder()
+                    .superId(Integer.parseInt(splitedProduct[0]))
                     .setName(splitedProduct[1])
                     .setPrice(Double.parseDouble(splitedProduct[2]))
                     .setPromotion(Boolean.parseBoolean(splitedProduct[3]))
