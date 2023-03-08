@@ -1,9 +1,9 @@
 package by.shumilov.clevertec.view.impl;
 
-import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Receipt;
 import org.junit.jupiter.api.Test;
 
+import static by.shumilov.clevertec.test_builder.TestBuilder.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ReceiptViewTest {
@@ -12,8 +12,10 @@ class ReceiptViewTest {
 
     @Test
     void viewReceipt() {
-        Receipt receipt = Receipt.anReceipt().build();
-        receipt.setDiscountCard(DiscountCard.builder().superId(1).build());
-        assertThat(receiptView.viewReceipt(receipt)).isInstanceOf(String.class);
+        Receipt receipt = receiptBuilder()
+                .setDiscountCard(discountCardBuilder().build())
+                .setReceiptLineList(receiptLineList())
+                .build();
+        assertThat(receiptView.viewReceipt(receipt).length()).isGreaterThan(20);
     }
 }

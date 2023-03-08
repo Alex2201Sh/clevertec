@@ -17,13 +17,13 @@ public class TestBuilder {
     }
 
     public static DiscountCard.DiscountCardBuilder discountCardBuilder() {
-        return DiscountCard.builder()
-                .setDiscountPercentage(10);
+        return DiscountCard.builder();
     }
 
     public static List<ReceiptLine> receiptLineList() {
-        return Arrays.asList(receiptLineBuilder().build(),
-                receiptLineBuilder().build());
+        return Arrays.asList(
+                receiptLineBuilder().setQuantity(2).build(),
+                receiptLineBuilder().setQuantity(10).build());
     }
 
     public static ReceiptLine.ReceiptLineBuilder receiptLineBuilder() {
@@ -37,11 +37,5 @@ public class TestBuilder {
                 .setName("Product")
                 .setPrice(1.23)
                 .setPromotion(true);
-    }
-
-
-    public static void main(String[] args) {
-        Receipt build = receiptBuilder().build();
-        System.out.println(build);
     }
 }

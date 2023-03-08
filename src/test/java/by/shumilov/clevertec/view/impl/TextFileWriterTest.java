@@ -1,12 +1,12 @@
 package by.shumilov.clevertec.view.impl;
 
-import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Receipt;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static by.shumilov.clevertec.test_builder.TestBuilder.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -18,8 +18,10 @@ class TextFileWriterTest {
 
     @Test
     void writeReceiptToFile() {
-        Receipt receipt = Receipt.anReceipt().build();
-        receipt.setDiscountCard(DiscountCard.builder().superId(1).build());
+        Receipt receipt = receiptBuilder()
+                .setDiscountCard(discountCardBuilder().build())
+                .setReceiptLineList(receiptLineList())
+                .build();
         writer.writeReceiptToFile(receipt, filePath);
         File file = new File(filePath);
         assertThat(file.exists() && !file.isDirectory()).isTrue();
