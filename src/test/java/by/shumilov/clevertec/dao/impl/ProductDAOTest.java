@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.shumilov.clevertec.test_builder.TestBuilder.productBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -15,8 +16,8 @@ class ProductDAOTest {
 
     private final ProductDAO productDAO = new ProductDAO();
     private final List<Product> productList = new ArrayList<>();
-    private final Product product1 = Product.builder().superId(1).build();
-    private final Product product2 = Product.builder().superId(2).build();
+    private final Product product1 = (Product) productBuilder().superId(1).build();
+    private final Product product2 = (Product) productBuilder().superId(2).build();
 
     @BeforeEach
     void init() {
