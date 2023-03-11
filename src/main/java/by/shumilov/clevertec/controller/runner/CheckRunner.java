@@ -1,4 +1,4 @@
-package by.shumilov.clevertec.controller;
+package by.shumilov.clevertec.controller.runner;
 
 public class CheckRunner {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package by.shumilov.clevertec.controller;
+package by.shumilov.clevertec.controller.runner;
 
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.service.impl.InputOrderFromFile;
