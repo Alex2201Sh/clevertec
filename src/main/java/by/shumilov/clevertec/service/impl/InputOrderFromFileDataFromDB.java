@@ -4,8 +4,8 @@ import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
-import by.shumilov.clevertec.dao.data_from_db.DiscountCardFromDB;
-import by.shumilov.clevertec.dao.data_from_db.ProductFromDB;
+import by.shumilov.clevertec.dao.data_from_db.DiscountCardDAOFromDB;
+import by.shumilov.clevertec.dao.data_from_db.ProductDAOFromDB;
 import by.shumilov.clevertec.dao.data_from_db.db.ConnectionPool;
 import by.shumilov.clevertec.service.InputOrder;
 import by.shumilov.clevertec.service.ReceiptCreator;
@@ -47,8 +47,8 @@ public class InputOrderFromFileDataFromDB implements InputOrder {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ProductFromDB productFromDB = new ProductFromDB(connection);
-        DiscountCardFromDB discountCardsFromDB = new DiscountCardFromDB(connection);
+        ProductDAOFromDB productFromDB = new ProductDAOFromDB(connection);
+        DiscountCardDAOFromDB discountCardsFromDB = new DiscountCardDAOFromDB(connection);
 
 
         String productsInString = textFileReader.read(args[1]);

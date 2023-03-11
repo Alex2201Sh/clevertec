@@ -1,6 +1,6 @@
 package by.shumilov.clevertec.dao.data_from_db;
 
-import by.shumilov.clevertec.bean.Product;
+import by.shumilov.clevertec.bean.DiscountCard;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,47 +9,39 @@ import java.sql.SQLException;
 
 import static org.apache.logging.log4j.core.util.Closer.close;
 
-public class ProductFromDB implements ItemDAO {
+public class DiscountCardDAOFromDB implements ItemDAO {
 
     private final Connection connection;
 
-    public ProductFromDB(Connection connection) {
+    public DiscountCardDAOFromDB(Connection connection) {
         this.connection = connection;
     }
 
     private static final String SQL_SELECT_PRODUCT_BY_ID =
-            "SELECT products.id,\n" +
-                    "       products.name,\n" +
-                    "       products.price,\n" +
-                    "       products.is_promotion\n" +
-                    "from products\n" +
-                    "where products.id = ?;";
+            "SELECT public.discount_cards.id,\n" +
+                    "       public.discount_cards.discount_percentage\n" +
+                    "from public.discount_cards\n" +
+                    "where public.discount_cards.id = ?;";
 
 
     @Override
-    public Product findById(int id) {
+    public DiscountCard findById(int id) {
         PreparedStatement statement = null;
-        Product product = null;
+        DiscountCard discountCard = null;
         try {
             statement = connection.prepareStatement(SQL_SELECT_PRODUCT_BY_ID);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id1 = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
-                boolean isPromotion = resultSet.getBoolean("is_promotion");
-                product = Product.builder()
+                int discountPercentage = resultSet.getInt("discount_percentage");
+                discountCard = DiscountCard.builder()
                         .superId(id1)
-                        .setName(name)
-                        .setPrice(price)
-                        .setPromotion(isPromotion)
+                        .setDiscountPercentage(discountPercentage)
                         .build();
-//                product = Product.newBuilder()
+//                discountCard = DiscountCard.newBuilder()
 //                        .setId(id1)
-//                        .setName(name)
-//                        .setPrice(price)
-//                        .setPromotion(isPromotion)
+//                        .setDiscountPercentage(discountPercentage)
 //                        .build();
             }
         } catch (SQLException throwables) {
@@ -61,6 +53,6 @@ public class ProductFromDB implements ItemDAO {
                 e.printStackTrace();
             }
         }
-        return product;
+        return discountCard;
     }
 }
