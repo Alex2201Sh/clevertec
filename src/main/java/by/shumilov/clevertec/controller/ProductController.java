@@ -3,53 +3,35 @@ package by.shumilov.clevertec.controller;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.dao.data_from_db.ItemDAOCreator;
 import by.shumilov.clevertec.dao.data_from_db.ProductDAOFromDB;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("/products")
 public class ProductController {
 
     private final ProductDAOFromDB dao = new ItemDAOCreator().getProductFromDBDao();
 
-    public static void main(String[] args) {
-        ProductController controller = new ProductController();
-        Product newProduct = Product.builder().setName("nedwadaww product").setPrice(9.99).setPromotion(true).build();
-        controller.dao.delete(41);
-        controller.dao.findAll().forEach(System.out::println);
-    }
-
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("products", dao.findAll());
-        return "products/index";
-
+    public List<Product> gelAllProducts() {
+        return dao.findAll();
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("product", dao.findById(id));
-        return "products/show";
-    }
-
-    @GetMapping("/new")
-    public String newProduct(@ModelAttribute("product") Product product) {
-        return "products/new";
+    public Product getProductById(@PathVariable("id") int id) {
+        return dao.findById(id);
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Product product,
-                         BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "products/new";
-
+    public ResponseEntity<Void> createUser(@RequestBody Product product) {
         dao.save(product);
-        return "redirect:/products";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}/edit")
@@ -69,8 +51,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public void delete(@PathVariable("id") int id) {
         dao.delete(id);
-        return "redirect:/products";
     }
 }

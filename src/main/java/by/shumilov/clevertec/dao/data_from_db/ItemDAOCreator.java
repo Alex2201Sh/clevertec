@@ -23,7 +23,7 @@ public class ItemDAOCreator {
         }
     }
 
-    public static ProductDAOFromDB getProductFromDBDao() {
+    public ProductDAOFromDB getProductFromDBDao() {
         init();
         return new ProductDAOFromDB(connection);
     }

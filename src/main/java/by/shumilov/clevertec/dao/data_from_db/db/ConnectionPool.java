@@ -54,7 +54,6 @@ public final class ConnectionPool {
             }
         }
         usedConnections.add(connection);
-        System.err.println(String.format("Connection was received from pool. Current pool size: %d used connections; %d free connection", usedConnections.size(), freeConnections.size()));
         return connection;
     }
 
