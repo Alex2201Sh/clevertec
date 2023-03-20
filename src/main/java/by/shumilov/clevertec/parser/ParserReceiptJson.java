@@ -108,7 +108,7 @@ public class ParserReceiptJson implements Parser{
                                     .append("\"id\":").append(product.getId()).append(",")
                                     .append("\"name\":").append(name).append(",")
                                     .append("\"price\":").append(product.getPrice()).append(",")
-                                    .append("\"promotion\":").append(product.isPromotion()).append(last);
+                                    .append("\"promotion\":").append(product.getPromotion()).append(last);
                         }
                 );
         result.append("]}");

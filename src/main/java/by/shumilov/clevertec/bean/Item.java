@@ -2,6 +2,7 @@ package by.shumilov.clevertec.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -9,6 +10,7 @@ import lombok.experimental.SuperBuilder;
  */
 @Data
 @SuperBuilder(setterPrefix = "super", toBuilder = true)
+@NoArgsConstructor
 public abstract class Item {
 
     /**

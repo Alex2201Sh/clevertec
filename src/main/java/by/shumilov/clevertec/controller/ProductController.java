@@ -1,14 +1,11 @@
 package by.shumilov.clevertec.controller;
 
 import by.shumilov.clevertec.bean.Product;
-import by.shumilov.clevertec.dao.data_from_db.ItemDAOCreator;
-import by.shumilov.clevertec.dao.data_from_db.ProductDAOFromDB;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import by.shumilov.clevertec.dao.ProductDaoSpring;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -16,42 +13,42 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductDAOFromDB dao = new ItemDAOCreator().getProductFromDBDao();
+    private final ProductDaoSpring productDaoSpring;
+
+    @Autowired
+    public ProductController(ProductDaoSpring productDaoSpring) {
+        this.productDaoSpring = productDaoSpring;
+        init();
+    }
+
+    private void init() {
+        productDaoSpring.save(Product.builder().setId(0).setName("first").setPrice(0.00).setPromotion(false).build());
+    }
 
     @GetMapping()
     public List<Product> gelAllProducts() {
-        return dao.findAll();
+        return productDaoSpring.findAll();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable("id") int id) {
-        return dao.findById(id);
+    public Product getProductById(@PathVariable("id") Product product) {
+        return product;
     }
 
     @PostMapping()
-    public ResponseEntity<Void> createUser(@RequestBody Product product) {
-        dao.save(product);
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("product", dao.findById(id));
-        return "products/edit";
+    public Product createProduct(@RequestBody Product product) {
+        return productDaoSpring.save(product);
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Product product, BindingResult bindingResult,
-                         @PathVariable("id") int id) {
-        if (bindingResult.hasErrors())
-            return "products/edit";
-
-        dao.update(id, product);
-        return "redirect:/products";
+    public Product update(@PathVariable("id") Product productFromDb,
+                          @RequestBody Product product) {
+        BeanUtils.copyProperties(product, productFromDb, "id");
+        return productDaoSpring.save(productFromDb);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
-        dao.delete(id);
+    public void delete(@PathVariable("id") Product product) {
+        productDaoSpring.delete(product);
     }
 }

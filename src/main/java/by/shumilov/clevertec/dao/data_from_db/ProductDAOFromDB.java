@@ -102,7 +102,7 @@ public class ProductDAOFromDB implements ItemDAO {
             statement = connection.prepareStatement(SQL_SAVE_PRODUCT);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
-            statement.setBoolean(3, product.isPromotion());
+            statement.setBoolean(3, product.getPromotion());
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -116,7 +116,7 @@ public class ProductDAOFromDB implements ItemDAO {
             statement = connection.prepareStatement(SQL_UPDATE_PRODUCT);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
-            statement.setBoolean(3, product.isPromotion());
+            statement.setBoolean(3, product.getPromotion());
             statement.setInt(4, id);
             statement.executeUpdate();
             connection.commit();
