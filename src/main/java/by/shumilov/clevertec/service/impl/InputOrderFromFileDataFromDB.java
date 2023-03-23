@@ -4,12 +4,14 @@ import by.shumilov.clevertec.bean.DiscountCard;
 import by.shumilov.clevertec.bean.Product;
 import by.shumilov.clevertec.bean.Receipt;
 import by.shumilov.clevertec.bean.ReceiptLine;
-import by.shumilov.clevertec.dao.data_from_db.DiscountCardFromDB;
-import by.shumilov.clevertec.dao.data_from_db.ProductFromDB;
+import by.shumilov.clevertec.dao.data_from_db.DiscountCardDAOFromDB;
+import by.shumilov.clevertec.dao.data_from_db.ProductDAOFromDB;
 import by.shumilov.clevertec.dao.data_from_db.db.ConnectionPool;
 import by.shumilov.clevertec.service.InputOrder;
 import by.shumilov.clevertec.service.ReceiptCreator;
 import by.shumilov.clevertec.view.impl.TextFileReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,9 +20,12 @@ import java.sql.SQLException;
  * The class is used to read the shopping list as a text file
  * and convert it to Receipt object.
  */
+@Repository
 public class InputOrderFromFileDataFromDB implements InputOrder {
 
     private final TextFileReader textFileReader;
+
+    @Autowired
     public InputOrderFromFileDataFromDB(TextFileReader textFileReader) {
         this.textFileReader = textFileReader;
     }
@@ -47,8 +52,8 @@ public class InputOrderFromFileDataFromDB implements InputOrder {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ProductFromDB productFromDB = new ProductFromDB(connection);
-        DiscountCardFromDB discountCardsFromDB = new DiscountCardFromDB(connection);
+        ProductDAOFromDB productFromDB = new ProductDAOFromDB(connection);
+        DiscountCardDAOFromDB discountCardsFromDB = new DiscountCardDAOFromDB(connection);
 
 
         String productsInString = textFileReader.read(args[1]);

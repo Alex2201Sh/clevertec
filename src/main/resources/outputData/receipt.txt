@@ -3,10 +3,11 @@ Current discount percentage: 8
 |Qty|              Product|  Price|  Total|
 |  4|               Carrot|   3,20|  12,80|
 |  5|               Tomato|   2,30|  11,50|
-|  3|                Sugar|   8,12|  24,36|
-|  6|                Juice|   1,25|   7,50|
-|  1|                  Oil|   2,26|   2,26|
-|  2|             Cucumber|   3,56|   7,12|
-|  3|                Apple|   7,55|  22,65|
-|Total cost:                         88,19|
-|Total cost with discount:           81,13|
+|  3|               Cherry|   4,35|  13,05|
+|  6|                Sugar|   8,12|  48,72|
+|Additional promotion 10% for line above. |
+|  1|            Ice-cream|   4,44|   4,44|
+|  2|                Apple|   7,55|  15,10|
+|  3|                Juice|   1,25|   3,75|
+|Total cost:                         104,49|
+|Total cost with discount:           96,13|

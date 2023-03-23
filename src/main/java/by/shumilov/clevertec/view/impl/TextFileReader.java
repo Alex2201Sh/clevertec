@@ -1,6 +1,7 @@
 package by.shumilov.clevertec.view.impl;
 
 import by.shumilov.clevertec.view.Reader;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Class uses to create String from txt file.
  */
+@Component
 public class TextFileReader implements Reader {
 
     /**

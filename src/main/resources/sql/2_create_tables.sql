@@ -1,6 +1,6 @@
 create table products
 (
-    id           serial not null
+    id bigserial not null
         constraint products_pkey
             primary key,
     name         varchar,

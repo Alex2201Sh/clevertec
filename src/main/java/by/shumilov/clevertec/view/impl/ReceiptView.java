@@ -39,7 +39,7 @@ public class ReceiptView implements View {
                     .append(String.format("%6.2f| ", receiptLine.getProduct().getPrice()))
                     .append(String.format("%6.2f|", (receiptLine.getProduct().getPrice() * receiptLine.getQuantity())))
                     .append("\n");
-            if (receiptLine.getProduct().isPromotion() && receiptLine.getQuantity() >= 5) {
+            if (receiptLine.getProduct().getPromotion() && receiptLine.getQuantity() >= 5) {
                 resultReceipt
                         .append(String.format("|%-41s|", "Additional promotion 10% for line above."))
                         .append("\n");

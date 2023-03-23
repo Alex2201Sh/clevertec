@@ -25,7 +25,7 @@ public class ReceiptCalculator {
      */
     public double getTotalCost() {
         return receipt.getReceiptLineList().stream()
-                .mapToDouble(receiptLine -> receiptLine.getProduct().isPromotion() && receiptLine.getQuantity() >= 5 ?
+                .mapToDouble(receiptLine -> receiptLine.getProduct().getPromotion() && receiptLine.getQuantity() >= 5 ?
                         receiptLine.getQuantity() * receiptLine.getProduct().getPrice() * 0.9 :
                         receiptLine.getQuantity() * receiptLine.getProduct().getPrice())
                 .sum();
